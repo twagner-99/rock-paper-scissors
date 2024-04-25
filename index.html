@@ -6,9 +6,7 @@
 </head>
 <body>
     <script>
-        let randomNum = Math.random();
-
-        function getComputerChoice() {
+        function getComputerChoice(randomNum) {
             if (randomNum < .33) {
                 return "Rock";
             } else if (randomNum > .67) {
@@ -17,6 +15,8 @@
                 return "Scissors";
             }
         }
+        
+        getComputerChoice(Math.random())
     </script>        
 </body>
 </html>

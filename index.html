@@ -6,7 +6,17 @@
 </head>
 <body>
     <script>
-        console.log("Hello World")
+        let randomNum = Math.random();
+
+        function getComputerChoice() {
+            if (randomNum < .33) {
+                return "Rock";
+            } else if (randomNum > .67) {
+                return "Paper";
+            } else {
+                return "Scissors";
+            }
+        }
     </script>        
 </body>
 </html>

@@ -32,15 +32,12 @@
 
         let humanScore = 0;
         let computerScore = 0;
-        let roundCount = 0;
 
         function playGame() {
-            if (roundCount < 5) {
+            for (let roundCount = 0; roundCount < 5; roundCount++) {
                 playRound(getHumanChoice(), getComputerChoice());
-                ++roundCount;
-            } else {
-                alert("Game Over. Final Score - You: " + humanScore + ". Computer: " + computerScore +".");
-            }
+                } 
+            alert("Game Over. Final Score - You: " + humanScore + ". Computer: " + computerScore +".");
 
             function playRound(humanChoice, computerChoice) {
                 if ((humanChoice.toLowerCase() === "rock" && computerChoice === "scissors")
@@ -58,11 +55,7 @@
         }
 
         playGame();
-        playGame();
-        playGame();
-        playGame();
-        playGame();
-        playGame();
+        
     </script>
 </body>
 </html>

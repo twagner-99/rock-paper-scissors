@@ -20,7 +20,15 @@
         const selection = document.querySelector("#selection-buttons");
         selection.addEventListener("click", (event) => {
             let target = event.target.id;
-            playRound(target, getComputerChoice()); // uses result of getComputerChoice function
+            if (humanScore < 5 && computerScore < 5) {
+                playRound(target, getComputerChoice()); // uses result of getComputerChoice function
+            }
+            else if(humanScore === 5) {
+                alert("Game Over. You Win!");
+            }
+            else {
+                alert("Game Over. You Lose.");
+            }
         });
 
         function getComputerChoice() {
@@ -34,30 +42,10 @@
             }
         }
 
-        // function getHumanChoice() {
-        //     let userInput = prompt("Rock, Paper, or Scissors?");
-        //     if (userInput.toLowerCase() === "rock") {
-        //         return "rock";
-        //     } else if (userInput.toLowerCase() === "paper") {
-        //         return "paper";
-        //     } else if (userInput.toLowerCase() === "scissors") {
-        //         return "scissors";
-        //     } else {
-        //         alert("Invalid Entry, Please Try Again");
-        //     }
-        // }
-
         let humanScore = 0;
         let computerScore = 0;
 
-//        function playGame() {   
-  //          for (let roundCount = 0; roundCount < 5; roundCount++) {
-    //            playRound(getHumanChoice(), getComputerChoice());
-      //          } 
-        //    alert("Game Over. Final Score - You: " + humanScore + ". Computer: " + computerScore +".");
-
             function playRound(humanChoice, computerChoice) {
-                if(humanScore < 5 && computerScore < 5) {
                     if ((humanChoice.toLowerCase() === "rock" && computerChoice === "scissors")
                     || (humanChoice.toLowerCase() === "paper" && computerChoice === "rock")
                     || (humanChoice.toLowerCase() === "scissors" && computerChoice === "paper")) {
@@ -79,17 +67,6 @@
                     // template literals because if I kept it outside, it wouldn't be able to see the 
                     // score get incremented since it lives in this function.
                 }
-                else if (humanScore >= 5) {
-                    alert("Game Over. You Win!");
-                }
-                else {
-                    alert("Game Over. You Lose.");
-                }
-            }
-//        }
-
-//        playGame();
-        
     </script>
 </body>
 </html>

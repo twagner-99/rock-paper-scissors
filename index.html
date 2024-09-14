@@ -7,14 +7,17 @@
 
 <body>
     <div id="selection-buttons">
-        <button class="rock">Rock</button>
-        <button class="paper">Paper</button>
-        <button class="scissors">Scissors</button>
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
     </div>
 
     <script>
-        const buttons = document.querySelector("#selection-buttons");
-        buttons.addEventListener("click", playRound);
+        const selection = document.querySelector("#selection-buttons");
+        selection.addEventListener("click", (event) => {
+            let target = event.target.id;
+            playRound(target, getComputerChoice()); // uses result of getComputerChoice function
+        });
 
         function getComputerChoice() {
             let randomNum = Math.random();
@@ -50,6 +53,7 @@
         //    alert("Game Over. Final Score - You: " + humanScore + ". Computer: " + computerScore +".");
 
             function playRound(humanChoice, computerChoice) {
+
                 if ((humanChoice.toLowerCase() === "rock" && computerChoice === "scissors")
                 || (humanChoice.toLowerCase() === "paper" && computerChoice === "rock")
                 || (humanChoice.toLowerCase() === "scissors" && computerChoice === "paper")) {

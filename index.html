@@ -30,18 +30,18 @@
             }
         }
 
-        function getHumanChoice() {
-            let userInput = prompt("Rock, Paper, or Scissors?");
-            if (userInput.toLowerCase() === "rock") {
-                return "rock";
-            } else if (userInput.toLowerCase() === "paper") {
-                return "paper";
-            } else if (userInput.toLowerCase() === "scissors") {
-                return "scissors";
-            } else {
-                alert("Invalid Entry, Please Try Again");
-            }
-        }
+        // function getHumanChoice() {
+        //     let userInput = prompt("Rock, Paper, or Scissors?");
+        //     if (userInput.toLowerCase() === "rock") {
+        //         return "rock";
+        //     } else if (userInput.toLowerCase() === "paper") {
+        //         return "paper";
+        //     } else if (userInput.toLowerCase() === "scissors") {
+        //         return "scissors";
+        //     } else {
+        //         alert("Invalid Entry, Please Try Again");
+        //     }
+        // }
 
         let humanScore = 0;
         let computerScore = 0;
@@ -53,7 +53,6 @@
         //    alert("Game Over. Final Score - You: " + humanScore + ". Computer: " + computerScore +".");
 
             function playRound(humanChoice, computerChoice) {
-
                 if ((humanChoice.toLowerCase() === "rock" && computerChoice === "scissors")
                 || (humanChoice.toLowerCase() === "paper" && computerChoice === "rock")
                 || (humanChoice.toLowerCase() === "scissors" && computerChoice === "paper")) {

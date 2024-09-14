@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <title>Rock, Paper, Scissors</title>
 </head>
+
 <body>
+    <div id="selection-buttons">
+        <button class="rock">Rock</button>
+        <button class="paper">Paper</button>
+        <button class="scissors">Scissors</button>
+    </div>
+
     <script>
+        const buttons = document.querySelector("#selection-buttons");
+        buttons.addEventListener("click", playRound);
+
         function getComputerChoice() {
             let randomNum = Math.random();
             if (randomNum < .33) {
@@ -33,11 +43,11 @@
         let humanScore = 0;
         let computerScore = 0;
 
-        function playGame() {
-            for (let roundCount = 0; roundCount < 5; roundCount++) {
-                playRound(getHumanChoice(), getComputerChoice());
-                } 
-            alert("Game Over. Final Score - You: " + humanScore + ". Computer: " + computerScore +".");
+//        function playGame() {   
+  //          for (let roundCount = 0; roundCount < 5; roundCount++) {
+    //            playRound(getHumanChoice(), getComputerChoice());
+      //          } 
+        //    alert("Game Over. Final Score - You: " + humanScore + ". Computer: " + computerScore +".");
 
             function playRound(humanChoice, computerChoice) {
                 if ((humanChoice.toLowerCase() === "rock" && computerChoice === "scissors")
@@ -52,9 +62,9 @@
                     alert("You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + "!");
                 }
             }
-        }
+//        }
 
-        playGame();
+//        playGame();
         
     </script>
 </body>

@@ -12,6 +12,10 @@
         <button id="scissors">Scissors</button>
     </div>
 
+    <div>SCORE:</div>
+    <div> You - <span id="player-tally">0</span>.</div>
+    <div> Computer - <span id="computer-tally">0</span>.</div>
+
     <script>
         const selection = document.querySelector("#selection-buttons");
         selection.addEventListener("click", (event) => {
@@ -64,6 +68,12 @@
                     ++computerScore;
                     alert("You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + "!");
                 }
+
+                const playerTally = document.querySelector("#player-tally");
+                const computerTally = document.querySelector("#computer-tally");
+
+                playerTally.textContent = humanScore;
+                computerTally.textContent = computerScore;
             }
 //        }
 

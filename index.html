@@ -17,18 +17,13 @@
     <div> Computer - <span id="computer-tally">0</span>.</div>
 
     <script>
+        let humanScore = 0;
+        let computerScore = 0;
+
         const selection = document.querySelector("#selection-buttons");
         selection.addEventListener("click", (event) => {
             let target = event.target.id;
-            if (humanScore < 5 && computerScore < 5) {
-                playRound(target, getComputerChoice()); // uses result of getComputerChoice function
-            }
-            else if(humanScore === 5) {
-                alert("Game Over. You Win!");
-            }
-            else {
-                alert("Game Over. You Lose.");
-            }
+            playRound(target, getComputerChoice()); // uses result of getComputerChoice function
         });
 
         function getComputerChoice() {
@@ -42,31 +37,35 @@
             }
         }
 
-        let humanScore = 0;
-        let computerScore = 0;
+        function playRound(humanChoice, computerChoice) {
+            if ((humanChoice.toLowerCase() === "rock" && computerChoice === "scissors")
+            || (humanChoice.toLowerCase() === "paper" && computerChoice === "rock")
+            || (humanChoice.toLowerCase() === "scissors" && computerChoice === "paper")) {
+                ++humanScore;
+                alert("You win! " + humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1) + " beats " + computerChoice + "!");
+            } else if (humanChoice.toLowerCase() === computerChoice) {
+                alert("It's a tie!");
+            } else {
+                ++computerScore;
+                alert("You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + "!");
+            }
 
-            function playRound(humanChoice, computerChoice) {
-                    if ((humanChoice.toLowerCase() === "rock" && computerChoice === "scissors")
-                    || (humanChoice.toLowerCase() === "paper" && computerChoice === "rock")
-                    || (humanChoice.toLowerCase() === "scissors" && computerChoice === "paper")) {
-                        ++humanScore;
-                        alert("You win! " + humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1) + " beats " + computerChoice + "!");
-                    } else if (humanChoice.toLowerCase() === computerChoice) {
-                        alert("It's a tie!");
-                    } else {
-                        ++computerScore;
-                        alert("You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + "!");
-                    }
+            const playerTally = document.querySelector("#player-tally");
+            const computerTally = document.querySelector("#computer-tally");
 
-                    const playerTally = document.querySelector("#player-tally");
-                    const computerTally = document.querySelector("#computer-tally");
+            playerTally.textContent = humanScore;
+            computerTally.textContent = computerScore;
 
-                    playerTally.textContent = humanScore;
-                    computerTally.textContent = computerScore;
-                    // I put the tallying function here instead of outside the function in the HTML using
-                    // template literals because if I kept it outside, it wouldn't be able to see the 
-                    // score get incremented since it lives in this function.
-                }
+            if (humanScore === 5) {
+                alert("Game Over. You Win!");
+            }
+            if (computerScore === 5) {
+                alert("Game Over. You Lose.");
+            }
+            // I put the tallying function here instead of outside the function in the HTML using
+            // template literals because if I kept it outside, it wouldn't be able to see the 
+            // score get incremented since it lives in this function.
+        }
     </script>
 </body>
 </html>

@@ -4,8 +4,28 @@
     <meta charset="UTF-8">
     <title>Rock, Paper, Scissors</title>
 </head>
+
 <body>
+    <div id="selection-buttons">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+
+    <div>SCORE:</div>
+    <div> You - <span id="player-tally">0</span>.</div>
+    <div> Computer - <span id="computer-tally">0</span>.</div>
+
     <script>
+        let humanScore = 0;
+        let computerScore = 0;
+
+        const selection = document.querySelector("#selection-buttons");
+        selection.addEventListener("click", (event) => {
+            let target = event.target.id;
+            playRound(target, getComputerChoice()); // uses result of getComputerChoice function
+        });
+
         function getComputerChoice() {
             let randomNum = Math.random();
             if (randomNum < .33) {
@@ -17,45 +37,35 @@
             }
         }
 
-        function getHumanChoice() {
-            let userInput = prompt("Rock, Paper, or Scissors?");
-            if (userInput.toLowerCase() === "rock") {
-                return "rock";
-            } else if (userInput.toLowerCase() === "paper") {
-                return "paper";
-            } else if (userInput.toLowerCase() === "scissors") {
-                return "scissors";
+        function playRound(humanChoice, computerChoice) {
+            if ((humanChoice.toLowerCase() === "rock" && computerChoice === "scissors")
+            || (humanChoice.toLowerCase() === "paper" && computerChoice === "rock")
+            || (humanChoice.toLowerCase() === "scissors" && computerChoice === "paper")) {
+                ++humanScore;
+                alert("You win! " + humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1) + " beats " + computerChoice + "!");
+            } else if (humanChoice.toLowerCase() === computerChoice) {
+                alert("It's a tie!");
             } else {
-                alert("Invalid Entry, Please Try Again");
+                ++computerScore;
+                alert("You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + "!");
             }
-        }
 
-        let humanScore = 0;
-        let computerScore = 0;
+            const playerTally = document.querySelector("#player-tally");
+            const computerTally = document.querySelector("#computer-tally");
 
-        function playGame() {
-            for (let roundCount = 0; roundCount < 5; roundCount++) {
-                playRound(getHumanChoice(), getComputerChoice());
-                } 
-            alert("Game Over. Final Score - You: " + humanScore + ". Computer: " + computerScore +".");
+            playerTally.textContent = humanScore;
+            computerTally.textContent = computerScore;
 
-            function playRound(humanChoice, computerChoice) {
-                if ((humanChoice.toLowerCase() === "rock" && computerChoice === "scissors")
-                || (humanChoice.toLowerCase() === "paper" && computerChoice === "rock")
-                || (humanChoice.toLowerCase() === "scissors" && computerChoice === "paper")) {
-                    ++humanScore;
-                    alert("You win! " + humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1) + " beats " + computerChoice + "!");
-                } else if (humanChoice.toLowerCase() === computerChoice) {
-                    alert("It's a tie!");
-                } else {
-                    ++computerScore;
-                    alert("You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + "!");
-                }
+            if (humanScore === 5) {
+                alert("Game Over. You Win!");
             }
+            if (computerScore === 5) {
+                alert("Game Over. You Lose.");
+            }
+            // I put the tallying function here instead of outside the function in the HTML using
+            // template literals because if I kept it outside, it wouldn't be able to see the 
+            // score get incremented since it lives in this function.
         }
-
-        playGame();
-        
     </script>
 </body>
 </html>
